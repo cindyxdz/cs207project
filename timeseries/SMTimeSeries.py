@@ -16,11 +16,14 @@ class SMTimeSeries(SizedContainerTimeSeriesInterface):
 	Methods
 	-------
 	Methods are inherited from SizedContainerTimeSeriesInterface, refer to SizedContainerTimeSeriesInterface for more details
+	Methods for SMTimeries inheritently uses methods from ArrayTimeSeries. 
+	Within method implementation, storage manager is used to fetch data from disk to return ArrayTimeSeries first. 
 
 	Property
 	--------
 	Each SMTimeSeries will be written to disk with unique id
 	When performing operations, timeseries values will be pulled put from disk by id, and then perform operations needed. 
+	
 	"""
 	def __init__(self, input_time, input_value, id=None):
 		"""

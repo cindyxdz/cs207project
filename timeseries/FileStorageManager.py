@@ -67,6 +67,32 @@ class FileStorageManager(StorageManagerInterface):
 		with open("id.json", "w") as json_file:
 			json.dump(self._id, json_file)
 
+	def store_tv(self, tid, times, values):
+		"""
+		The function stores the given timeseries with corresponding id
+
+		Args
+		--------
+		 - tid: unique id of type string to be used to store the timeseries. if is already exists, will overwrite current data
+		 - times: list of time for storing timeseries
+		 - values: list of values for storing timeseries
+
+		"""
+		if isinstance(tid, int):
+			tid = str(tid)
+		# Convert time series to correct format
+		timeseries = np.vstack((times, values))
+
+		# Save size of time series
+		self._id[tid] = len(times)
+
+		# Save time series
+		np.save(str(tid), timeseries)
+
+		# Save sizes dict with each store of time series
+		with open("id.json", "w") as json_file:
+			json.dump(self._id, json_file)
+
 
 	def size(self, tid):
 		"""
