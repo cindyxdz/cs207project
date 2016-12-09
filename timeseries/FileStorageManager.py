@@ -81,7 +81,7 @@ class FileStorageManager(StorageManagerInterface):
 		if isinstance(tid, int):
 			tid = str(tid)
 		# Convert time series to correct format
-		timeseries = np.vstack((times, values))
+		timeseries = np.vstack((times, values)).astype(np.float64)
 
 		# Save size of time series
 		self._id[tid] = len(times)
